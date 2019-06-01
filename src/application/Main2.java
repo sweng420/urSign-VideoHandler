@@ -1,11 +1,16 @@
 package application;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import player.Player;
 
@@ -24,16 +29,15 @@ public class Main2 extends Application {
 	@Override
 	public void start(Stage stage) {		
 		try{
-			
-			//Root pane
-			Pane rootPane = new Pane();
-			
+			Label top = new Label("top");
+			Label bot = new Label("bot");
+
 			//Video Node
-			HBox videoBox = new HBox();
+			VBox videoBox = new VBox();
 			
 			//Initialise scene and add to stage
-			Scene scene = new Scene(rootPane,800,600);
-			Canvas canvas = new Canvas(250,400);
+			Scene scene = new Scene(videoBox,800,600);
+			Canvas canvas = new Canvas(250,450);
 			
 			//State = 0 for singleVideo
 			vidplayer  = new Player(canvas,0,0, stage, 0);
@@ -42,12 +46,13 @@ public class Main2 extends Application {
 
 			//Load videos
 			vidplayer.loadPaths(paths);
-			vidplayer.setMaxHeight(vidplayer.getHeight());
-			vidplayer.setMaxWidth(vidplayer.getWidth());
+			vidplayer.setMaxHeight(canvas.getHeight());
+			vidplayer.setMaxWidth(canvas.getWidth());
 			
-			videoBox .getChildren().add(vidplayer);
+			videoBox.getChildren().add(top);
+			videoBox.getChildren().add(vidplayer);
+			videoBox.getChildren().add(bot);
 			
-			rootPane.getChildren().add(vidplayer);
 			stage.setScene(scene);
 			stage.show();
 			

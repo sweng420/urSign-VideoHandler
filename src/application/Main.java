@@ -28,7 +28,7 @@ public class Main extends Application {
 			
 			//Initialise scene and add to stage
 			Scene scene = new Scene(borderPaneBase,800,600);
-			Canvas canvas = new Canvas(700,500);
+			Canvas canvas = new Canvas(400,400);
 			
 			//State = 1 for videoTab
 			vidplayer  = new Player(canvas,0,0, stage, 1);
